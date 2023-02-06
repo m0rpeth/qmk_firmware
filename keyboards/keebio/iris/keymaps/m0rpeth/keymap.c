@@ -90,27 +90,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;        // Return false to ignore further processing of key
         }
         break;
-    case RSFT_T(KC_BSLS):
-        if (record->tap.count && record->event.pressed) {
-            tap_code16(KC_BSLS); // Send KC_BSLS on tap
-            return false;        // Return false to ignore further processing of key
-        }
-        break;
-    case RGUI_T(KC_MINS):
+    case RSFT_T(KC_MINS):
         if (record->tap.count && record->event.pressed) {
             tap_code16(KC_MINS); // Send KC_MINS on tap
             return false;        // Return false to ignore further processing of key
         }
         break;
-    case RALT_T(KC_EQL):
+    case RGUI_T(KC_EQL):
         if (record->tap.count && record->event.pressed) {
             tap_code16(KC_EQL); // Send KC_EQL on tap
             return false;        // Return false to ignore further processing of key
         }
         break;
-    case RCTL_T(KC_PLUS):
+    case RALT_T(KC_PLUS):
         if (record->tap.count && record->event.pressed) {
             tap_code16(KC_PLUS); // Send KC_PLUS on tap
+            return false;        // Return false to ignore further processing of key
+        }
+        break;
+    case RCTL_T(KC_AT):
+        if (record->tap.count && record->event.pressed) {
+            tap_code16(KC_AT); // Send KC_AT on tap
             return false;        // Return false to ignore further processing of key
         }
         break;
