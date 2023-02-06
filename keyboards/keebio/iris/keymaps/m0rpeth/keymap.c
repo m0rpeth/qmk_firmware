@@ -48,24 +48,31 @@ enum custom_keycodes {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case KC_LWR:
-      if (record->event.pressed) {
-        layer_on(LYR_LOWER);
-        update_tri_layer(LYR_LOWER, LYR_RAISE, LYR_ADJUST);
-      } else {
-        layer_off(LYR_LOWER);
-        update_tri_layer(LYR_LOWER, LYR_RAISE, LYR_ADJUST);
-      }
-      return false;
-    case KC_RSE:
-      if (record->event.pressed) {
-        layer_on(LYR_RAISE);
-        update_tri_layer(LYR_LOWER, LYR_RAISE, LYR_ADJUST);
-      } else {
-        layer_off(LYR_RAISE);
-        update_tri_layer(LYR_LOWER, LYR_RAISE, LYR_ADJUST);
-      }
-      return false;
+    case LT(0, KC_LWR):
+        if (record->event.pressed) {
+            // on hold
+            layer_on(LYR_LOWER);
+            update_tri_layer(LYR_LOWER, LYR_RAISE, LYR_ADJUST);
+        } else {
+            // on release
+            layer_off(LYR_LOWER);
+            update_tri_layer(LYR_LOWER, LYR_RAISE, LYR_ADJUST);
+        }
+        return false;
+    case LT(0, KC_RSE):
+        if (record->tap.count && record->event.pressed) {
+            // on tap
+            tap_code16(KC_ENT);
+        } else if (record->event.pressed) {
+            // on hold
+            layer_on(LYR_RAISE);
+            update_tri_layer(LYR_LOWER, LYR_RAISE, LYR_ADJUST);
+        } else {
+            // on release
+            layer_off(LYR_RAISE);
+            update_tri_layer(LYR_LOWER, LYR_RAISE, LYR_ADJUST);
+        }
+        return false;
     case LCTL_T(KC_EXLM):
         if (record->tap.count && record->event.pressed) {
             tap_code16(KC_EXLM); // Send KC_EXLM on tap
@@ -127,9 +134,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                            ├────────┼────────┼────────┼────────┼────────┼────────┤
             KC_TAB,  LCTL_T(KC_A), LALT_T(KC_R), LGUI_T(KC_S), LSFT_T(KC_T), KC_D,             KC_H, RSFT_T(KC_N), RGUI_T(KC_E), RALT_T(KC_I), RCTL_T(KC_O), KC_QUOT,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐          ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-            KC_NO,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_ESC,             KC_ENT,  KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,
+            KC_NO,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_ESC,             KC_DEL,  KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_NO,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘          └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                           KC_NBL,  KC_LWR,  KC_SPC,                      KC_BSPC, KC_RSE,  KC_DEL
+                                           KC_NBL,  LT(0, KC_LWR),  KC_SPC,               KC_BSPC, LT(0, KC_RSE),  KC_NO
         //                               └────────┴────────┴────────┘                   └────────┴────────┴────────┘
     ),
 
