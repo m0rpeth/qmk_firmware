@@ -146,9 +146,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├────────┼────────┼────────┼────────┼────────┼────────┤                            ├────────┼────────┼────────┼────────┼────────┼────────┤
             KC_NO,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                 KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_NO,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                            ├────────┼────────┼────────┼────────┼────────┼────────┤
-            KC_NO,   LCTL_T(KC_EXLM), LALT_T(KC_AMPR), LGUI_T(KC_LPRN), LSFT_T(KC_RPRN), KC_GRV,                       KC_BSLS, RSFT_T(KC_MINS), RGUI_T(KC_EQL), RALT_T(KC_PLUS), RCTL_T(KC_AT), KC_NO,
+            KC_NO,   LCTL_T(KC_EXLM), LALT_T(KC_AMPR), LGUI_T(KC_LPRN), LSFT_T(KC_RPRN), KC_GRV,                       KC_PIPE, RSFT_T(KC_MINS), RGUI_T(KC_EQL), RALT_T(KC_PLUS), RCTL_T(KC_AT), KC_NO,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐          ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-            KC_NO,   KC_HASH, KC_DLR,  KC_LCBR, KC_RCBR, KC_PERC, KC_NO,              KC_NO,   KC_CIRC, KC_LBRC, KC_RBRC, KC_ASTR, KC_UNDS, KC_NO,
+            KC_NO,   KC_HASH, KC_DLR,  KC_LCBR, KC_RCBR, KC_PERC, KC_NO,              KC_NO,   KC_BSLS, KC_LBRC, KC_RBRC, KC_ASTR, KC_UNDS, KC_NO,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘          └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                            KC_NO,   KC_TRNS, KC_NO,                       KC_NO,   KC_TRNS, KC_NO
         //                               └────────┴────────┴────────┘                   └────────┴────────┴────────┘
