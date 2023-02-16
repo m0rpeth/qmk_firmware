@@ -1,4 +1,4 @@
-#include "iris.h"
+#include QMK_KEYBOARD_H
 
 LEADER_EXTERNS();
 
