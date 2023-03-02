@@ -1,7 +1,5 @@
 #include QMK_KEYBOARD_H
 
-LEADER_EXTERNS();
-
 enum layers {
     LYR_ALPHA = 0,
     LYR_COLEMAK,
@@ -16,28 +14,21 @@ enum custom_keycodes {
 	KC_ADJUST
 };
 
-void matrix_scan_user(void) {
-  LEADER_DICTIONARY() {
-
-    leading = false;
-
-    SEQ_ONE_KEY(KC_M) {
-      register_code(KC_F24);
-      unregister_code(KC_F24);
+void leader_end_user(void) {
+    if (leader_sequence_one_key(KC_M)) {
+        register_code(KC_F24);
+        unregister_code(KC_F24);
     }
-
-    SEQ_TWO_KEYS(KC_S, KC_S) {
-      register_code(KC_LCTL);
-      register_code(KC_LGUI);
-      register_code(KC_LSFT);
-      register_code(KC_4);
-      unregister_code(KC_LCTL);
-      unregister_code(KC_LGUI);
-      unregister_code(KC_LSFT);
-      unregister_code(KC_4);
+    else if (leader_sequence_two_keys(KC_S, KC_S)) {
+        register_code(KC_LCTL);
+        register_code(KC_LGUI);
+        register_code(KC_LSFT);
+        register_code(KC_4);
+        unregister_code(KC_LCTL);
+        unregister_code(KC_LGUI);
+        unregister_code(KC_LSFT);
+        unregister_code(KC_4);
     }
-
-  }
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -144,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘          └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                            KC_TRNS, KC_TRNS, KC_TRNS,                     KC_TRNS, KC_TRNS, KC_TRNS
         //                               └────────┴────────┴────────┘                   └────────┴────────┴────────┘
-    )
+    ),
 
     [LYR_LOWER] = LAYOUT(
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                            ┌────────┬────────┬────────┬────────┬────────┬────────┐
@@ -178,11 +169,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //┌────────┬────────┬────────┬────────┬────────┬────────┐                            ┌────────┬────────┬────────┬────────┬────────┬────────┐
             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   QK_BOOT,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                            ├────────┼────────┼────────┼────────┼────────┼────────┤
-            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                BL_INC,  RGB_MOD, RGB_SPI, RGB_HUI, RGB_SAI, RGB_VAI,
+            KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                BL_STEP, RGB_MOD, RGB_SPI, RGB_HUI, RGB_SAI, RGB_VAI,
         //├────────┼────────┼────────┼────────┼────────┼────────┤                            ├────────┼────────┼────────┼────────┼────────┼────────┤
             KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,                                BL_TOGG, RGB_TOG, KC_NO,   KC_NO,   KC_NO,   KC_NO,
         //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐          ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-            TG(1),   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,              KC_NO,   BL_DEC, RGB_RMOD, RGB_SPD, RGB_HUD, RGB_SAD, RGB_VAD,
+            TG(1),   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,   KC_NO,              KC_NO,   BL_STEP, RGB_RMOD, RGB_SPD, RGB_HUD, RGB_SAD, RGB_VAD,
         //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘          └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                            KC_NO,   KC_NO,   KC_NO,                       KC_NO,   KC_TRNS, KC_TRNS
         //                               └────────┴────────┴────────┘                   └────────┴────────┴────────┘
