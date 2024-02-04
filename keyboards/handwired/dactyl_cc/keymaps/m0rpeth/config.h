@@ -25,5 +25,3 @@
 #ifndef NO_DEBUG
 #define NO_DEBUG
 #endif
-
-#define MASTER_RIGHT
