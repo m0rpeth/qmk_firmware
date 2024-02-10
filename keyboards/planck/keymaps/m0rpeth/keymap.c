@@ -85,27 +85,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 }
 
-const uint16_t PROGMEM ampr_combo[] = {KC_Q, KC_W, COMBO_END}; // & => q + w
-const uint16_t PROGMEM ques_combo[] = {KC_A, KC_S, COMBO_END}; // ? => a + s
-const uint16_t PROGMEM exlm_combo[] = {KC_Z, KC_X, COMBO_END}; // ! => z + x
+// const uint16_t PROGMEM ampr_combo[] = {KC_Q, KC_W, COMBO_END}; // & => q + w
+// const uint16_t PROGMEM ques_combo[] = {KC_A, KC_S, COMBO_END}; // ? => a + s
+// const uint16_t PROGMEM exlm_combo[] = {KC_Z, KC_X, COMBO_END}; // ! => z + x
+//
+// const uint16_t PROGMEM grv_combo[] = {KC_R, KC_T, COMBO_END}; // [ => r + t
+// const uint16_t PROGMEM at_combo[] = {KC_F, KC_G, COMBO_END}; // [ => f + g
+// const uint16_t PROGMEM perc_combo[] = {KC_V, KC_B, COMBO_END}; // [ => v + b
+//
+// const uint16_t PROGMEM lbrc_combo[] = {KC_W, KC_E, COMBO_END}; // [ => w + e
+// const uint16_t PROGMEM lprn_combo[] = {KC_S, KC_D, COMBO_END}; // ( => s + d
+// const uint16_t PROGMEM lcbr_combo[] = {KC_X, KC_C, COMBO_END}; // { => x + c
+//
+// const uint16_t PROGMEM rbrc_combo[] = {KC_E, KC_R, COMBO_END}; // ] => e + r
+// const uint16_t PROGMEM rprn_combo[] = {KC_D, KC_F, COMBO_END}; // ) => d + f
+// const uint16_t PROGMEM rcbr_combo[] = {KC_C, KC_V, COMBO_END}; // } => c + v
+//
+// const uint16_t PROGMEM eqls_combo[] = {KC_K, KC_L, COMBO_END}; // = => k + l
+// const uint16_t PROGMEM gt_combo[] = {KC_L, KC_SCLN, COMBO_END}; // > => l + scln
 
-const uint16_t PROGMEM grv_combo[] = {KC_R, KC_T, COMBO_END}; // [ => r + t
-const uint16_t PROGMEM at_combo[] = {KC_F, KC_G, COMBO_END}; // [ => f + g
-const uint16_t PROGMEM perc_combo[] = {KC_V, KC_B, COMBO_END}; // [ => v + b
 
-const uint16_t PROGMEM lbrc_combo[] = {KC_W, KC_E, COMBO_END}; // [ => w + e
-const uint16_t PROGMEM lprn_combo[] = {KC_S, KC_D, COMBO_END}; // ( => s + d
-const uint16_t PROGMEM lcbr_combo[] = {KC_X, KC_C, COMBO_END}; // { => x + c
-
-const uint16_t PROGMEM rbrc_combo[] = {KC_E, KC_R, COMBO_END}; // ] => e + r
-const uint16_t PROGMEM rprn_combo[] = {KC_D, KC_F, COMBO_END}; // ) => d + f
-const uint16_t PROGMEM rcbr_combo[] = {KC_C, KC_V, COMBO_END}; // } => c + v
-
-const uint16_t PROGMEM eqls_combo[] = {KC_K, KC_L, COMBO_END}; // = => k + l
-const uint16_t PROGMEM gt_combo[] = {KC_L, KC_SCLN, COMBO_END}; // > => l + scln
-
-
-combo_t key_combos[] = {
+//combo_t key_combos[] = {
     //COMBO(ampr_combo, KC_AMPR),
     //COMBO(ques_combo, KC_QUES),
     //COMBO(exlm_combo, KC_EXLM),
@@ -114,16 +114,16 @@ combo_t key_combos[] = {
     //COMBO(at_combo, KC_AT),
     //COMBO(perc_combo, KC_PERC),
 
-    COMBO(lbrc_combo, KC_LBRC),
-    COMBO(lprn_combo, KC_LPRN),
-    COMBO(lcbr_combo, KC_LCBR),
-    COMBO(rbrc_combo, KC_RBRC),
-    COMBO(rprn_combo, KC_RPRN),
-    COMBO(rcbr_combo, KC_RCBR),
+    //COMBO(lbrc_combo, KC_LBRC),
+    //COMBO(lprn_combo, KC_LPRN),
+    //COMBO(lcbr_combo, KC_LCBR),
+    //COMBO(rbrc_combo, KC_RBRC),
+    //COMBO(rprn_combo, KC_RPRN),
+    //COMBO(rcbr_combo, KC_RCBR),
 
-    COMBO(eqls_combo, KC_EQL),
-    COMBO(gt_combo, KC_GT),
-};
+    //COMBO(eqls_combo, KC_EQL),
+    //COMBO(gt_combo, KC_GT),
+//};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LYR_QWERTY] = LAYOUT_ortho_4x12(
