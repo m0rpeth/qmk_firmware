@@ -96,13 +96,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     // add macro layer? screenshot etc
     [LYR_NAV] = LAYOUT_ortho_4x12(
-        KC_TRNS,    KC_COMM,    KC_7,       KC_8,       KC_9,       KC_DLR,     KC_HOME,   KC_PGDN,    KC_PGUP,    KC_END,      KC_NO,      KC_TRNS,
-        KC_NO,      KC_0,       KC_4,       KC_5,       KC_6,       KC_PERC,    KC_LEFT,   KC_DOWN,    KC_UP,      KC_RIGHT,    KC_NO,      KC_NO,
+        KC_TRNS,    KC_COMM,    KC_7,       KC_8,       KC_9,       KC_DLR,     KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,      KC_NO,      KC_TRNS,
+        KC_NO,      KC_0,       KC_4,       KC_5,       KC_6,       KC_PERC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,    KC_NO,      KC_NO,
         KC_TRNS,    KC_DOT,     KC_1,       KC_2,       KC_3,       KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,       KC_NO,      KC_TRNS,
         KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,     KC_TRNS,    KC_TRNS
     ),
     [LYR_SYM] = LAYOUT_ortho_4x12(
-        KC_NO,      KC_NO,      KC_PERC,    KC_LBRC,    KC_RBRC,    KC_GRV,     KC_CIRC,    KC_SLSH,    KC_DLR,     KC_ASTR,    KC_HASH,    KC_TRNS,
+        KC_NO,      KC_NO,      KC_PERC,    KC_LBRC,    KC_RBRC,    KC_GRV,     KC_SLSH,    KC_CIRC,    KC_DLR,     KC_ASTR,    KC_HASH,    KC_TRNS,
         KC_NO,      KC_QUES,    KC_EXLM,    KC_LPRN,    KC_RPRN,    KC_PIPE,    KC_AT,      KC_MINS,    KC_EQL,     KC_PLUS,    KC_COLN,    KC_NO,
         KC_NO,      KC_AMPR,    KC_UNDS,    KC_LCBR,    KC_RCBR,    KC_NO,      KC_BSLS,    KC_TILD,    KC_LT,      KC_GT,      KC_DQUO,    KC_TRNS,
         KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS
