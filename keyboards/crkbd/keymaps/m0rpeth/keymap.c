@@ -13,18 +13,28 @@ enum custom_keycodes {
 	KC_SYM,
 };
 
-#define OSL_FN  OSL(LYR_FN)
-#define TO_SYM  MO(LYR_SYM)
-#define TO_NAV  MO(LYR_NAV)
+#define OSL_FN     OSL(LYR_FN)
+#define TO_SYM     MO(LYR_SYM)
+#define TO_NAV     MO(LYR_NAV)
+#define LT_SYM     LT(LYR_SYM, KC_ENT)
+#define LT_NAV     LT(LYR_NAV, KC_ESC)
 
-#define HR_A    LCTL_T(KC_A)
-#define HR_S    LALT_T(KC_S)
-#define HR_D    LGUI_T(KC_D)
-#define HR_F    LSFT_T(KC_F)
-#define HR_J    RSFT_T(KC_J)
-#define HR_K    RGUI_T(KC_K)
-#define HR_L    RALT_T(KC_L)
-#define HR_SCLN RCTL_T(KC_SCLN)
+#define HR_A       LCTL_T(KC_A)
+#define HR_S       LALT_T(KC_S)
+#define HR_D       LGUI_T(KC_D)
+#define HR_F       LSFT_T(KC_F)
+#define HR_J       RSFT_T(KC_J)
+#define HR_K       RGUI_T(KC_K)
+#define HR_L       RALT_T(KC_L)
+#define HR_SCLN    RCTL_T(KC_SCLN)
+
+#define DESK_LEFT  LCTL(KC_LEFT)
+#define DESK_RIGHT LCTL(KC_RIGHT)
+#define DESK_MC    LCTL(KC_UP)
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, LYR_NAV, LYR_SYM, LYR_ADJ);
+}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint8_t saved_mods   = 0;
@@ -48,40 +58,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_BSPC);
             }
             return false;
-
-        case KC_NAV:
-            if (record->event.pressed) {
-                // on hold
-                layer_on(LYR_NAV);
-                update_tri_layer(LYR_NAV, LYR_SYM, LYR_ADJ);
-            } else {
-                // on release
-                layer_off(LYR_NAV);
-                update_tri_layer(LYR_NAV, LYR_SYM, LYR_ADJ);
-            }
-            return false;
-
-        case KC_SYM:
-            if (record->event.pressed) {
-                // on hold
-                layer_on(LYR_SYM);
-                update_tri_layer(LYR_NAV, LYR_SYM, LYR_ADJ);
-            } else {
-                // on release
-                layer_off(LYR_SYM);
-                update_tri_layer(LYR_NAV, LYR_SYM, LYR_ADJ);
-            }
-            return false;
     }
     return true;
 }
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LYR_QWERTY] = LAYOUT_split_3x6_3(
-        QK_LEAD,    KC_Q,    KC_W,    KC_E,       KC_R,      KC_T,          KC_Y,      KC_U,      KC_I,       KC_O,      KC_P,       KC_BSPC,
-        KC_TAB,     HR_A,    HR_S,    HR_D,       HR_F,      KC_G,          KC_H,      HR_J,      HR_K,       HR_L,      HR_SCLN,    KC_QUOT,
-        KC_ESC,     KC_Z,    KC_X,    KC_C,       KC_V,      KC_B,          KC_N,      KC_M,      KC_COMM,    KC_DOT,    KC_SLSH,    KC_ENT,
-                                      OSL_FN,     KC_NAV,    KC_BSPC,       KC_SPC,    KC_SYM,    KC_NO
+        QK_LEAD,    KC_Q,    KC_W,    KC_E,     KC_R,      KC_T,          KC_Y,      KC_U,      KC_I,       KC_O,      KC_P,       KC_BSPC,
+        KC_TAB,     HR_A,    HR_S,    HR_D,     HR_F,      KC_G,          KC_H,      HR_J,      HR_K,       HR_L,      HR_SCLN,    KC_QUOT,
+        KC_NO,      KC_Z,    KC_X,    KC_C,     KC_V,      KC_B,          KC_N,      KC_M,      KC_COMM,    KC_DOT,    KC_SLSH,    OSL_FN,
+                                      KC_NO,    LT_NAV,    KC_BSPC,       KC_SPC,    LT_SYM,    KC_NO
     ),
 
     [LYR_NAV] = LAYOUT_split_3x6_3(
