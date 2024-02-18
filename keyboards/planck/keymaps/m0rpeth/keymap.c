@@ -5,13 +5,7 @@ enum layers {
     LYR_NAV,
     LYR_SYM,
     LYR_FN,
-    LYR_ADJUST,
-};
-
-enum custom_keycodes {
-	KC_NAV = SAFE_RANGE,
-	KC_SYM,
-	KC_ADJUST,
+    LYR_ADJ,
 };
 
 #define LT_SYM MO(LYR_SYM)
@@ -37,6 +31,10 @@ void leader_end_user(void) {
     }
 }
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, LYR_NAV, LYR_SYM, LYR_ADJ);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     static uint8_t saved_mods   = 0;
 
@@ -59,30 +57,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 unregister_code(KC_BSPC);
             }
             return false;
-
-      //case LT_NAV:
-      //    if (record->event.pressed) {
-      //        // on hold
-      //        layer_on(LYR_NAV);
-      //        update_tri_layer(LYR_NAV, LYR_SYM, LYR_ADJUST);
-      //    } else {
-      //        // on release
-      //        layer_off(LYR_NAV);
-      //        update_tri_layer(LYR_NAV, LYR_SYM, LYR_ADJUST);
-      //    }
-      //    return false;
-
-      //case LT_SYM:
-      //    if (record->event.pressed) {
-      //        // on hold
-      //        layer_on(LYR_SYM);
-      //        update_tri_layer(LYR_NAV, LYR_SYM, LYR_ADJUST);
-      //    } else {
-      //        // on release
-      //        layer_off(LYR_SYM);
-      //        update_tri_layer(LYR_NAV, LYR_SYM, LYR_ADJUST);
-      //    }
-      //    return false;
     }
     return true;
 }
@@ -113,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_F1,    KC_F2,     KC_F3,     KC_F4,     KC_NO,
         KC_NO,    KC_TRNS,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,     KC_NO,     KC_NO,     KC_NO
     ),
-    [LYR_ADJUST] = LAYOUT_ortho_4x12(
+    [LYR_ADJ] = LAYOUT_ortho_4x12(
         KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,      KC_NO,       KC_NO,      KC_NO,      QK_BOOT,
         KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,    KC_NO,    RGB_TOG,    RGB_MOD,     RGB_HUI,    RGB_SAI,    RGB_VAI,
         KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,      RGB_RMOD,    RGB_HUD,    RGB_SAD,    RGB_VAD,
