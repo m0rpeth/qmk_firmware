@@ -16,9 +16,8 @@ LEADER_ENABLE = yes
 # RGB Matrix: RGB, per key, individually addressable
 # Indicators: Scroll/Caps/Num Lock LEDs
 
-RGBLIGHT_SUPPORTED = no
-RGB_MATRIX_SUPPORTED = no
-RGB_MATRIX_ENABLE = no
+RGBLIGHT_SUPPORTED = yes
+RGB_MATRIX_SUPPORTED = yes
 
 VIA_ENABLE = no
 #COMBO_ENABLE = yes
