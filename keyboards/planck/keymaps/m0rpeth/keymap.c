@@ -9,10 +9,10 @@ enum layers {
 };
 
 #define LT_SYM MO(LYR_SYM)
-#define LT_NAV LT(LYR_NAV, KC_SPC)
+#define LT_NAV MO(LYR_NAV)
 #define MT_ESC LGUI_T(KC_ENT)
 #define MT_ENT RGUI_T(KC_ENT)
-#define OS_FN OSL(LYR_FN)
+#define MO_FN MO(LYR_FN)
 
 void leader_end_user(void) {
     if (leader_sequence_one_key(KC_M)) {
@@ -66,7 +66,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_ESC,     KC_Q,       KC_W,       KC_E,       KC_R,      KC_T,      KC_Y,      KC_U,      KC_I,       KC_O,       KC_P,       KC_BSPC,
         KC_TAB,     KC_A,       KC_S,       KC_D,       KC_F,      KC_G,      KC_H,      KC_J,      KC_K,       KC_L,       KC_SCLN,    KC_QUOT,
         KC_LSFT,    KC_Z,       KC_X,       KC_C,       KC_V,      KC_B,      KC_N,      KC_M,      KC_COMM,    KC_DOT,     KC_SLSH,    KC_RSFT,
-        KC_LCTL,    OS_FN,      KC_LALT,    KC_LGUI,    LT_NAV,    KC_SPC,    KC_SPC,    LT_SYM,    MT_ENT,     KC_RALT,    QK_LEAD,    KC_RCTL
+        KC_LCTL,    QK_LEAD,    KC_LALT,    MT_ESC,     LT_NAV,    KC_SPC,    KC_SPC,    LT_SYM,    MT_ENT,     KC_RALT,    MO_FN,      KC_RCTL
     ),
     // add macro layer? screenshot etc
     [LYR_NAV] = LAYOUT_ortho_4x12(
@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
     [LYR_FN] = LAYOUT_ortho_4x12(
-        KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_F9,    KC_F10,    KC_F11,    KC_F12,    QK_BOOT,
+        KC_F1,    KC_F2,      KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,     KC_F10,    KC_F11,    KC_F12,
         KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_F5,    KC_F6,     KC_F7,     KC_F8,     KC_NO,
         KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_F1,    KC_F2,     KC_F3,     KC_F4,     KC_NO,
         KC_NO,    KC_TRNS,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,     KC_NO,     KC_NO,     KC_NO
