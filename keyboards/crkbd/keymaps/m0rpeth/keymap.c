@@ -9,11 +9,19 @@ enum layers {
     LYR_ADJ,
 };
 
-#define LT_SYM MO(LYR_SYM)
-#define LT_NAV MO(LYR_NAV)
-#define MT_ESC LGUI_T(KC_ENT)
-#define MT_ENT RGUI_T(KC_ENT)
-#define MO_FN MO(LYR_FN)
+#define MO_SYM MO(LYR_SYM)
+#define MO_NAV MO(LYR_NAV)
+#define OS_FN OSL(LYR_FN)
+
+#define HR_F LSFT_T(KC_F)
+#define HR_D LGUI_T(KC_D)
+#define HR_S LALT_T(KC_S)
+#define HR_A LCTL_T(KC_A)
+
+#define HR_J RSFT_T(KC_J)
+#define HR_K RGUI_T(KC_K)
+#define HR_L RALT_T(KC_L)
+#define HR_SCLN RCTL_T(KC_SCLN)
 
 void leader_end_user(void) {
     if (leader_sequence_one_key(KC_M)) {
@@ -78,37 +86,37 @@ bool achordion_chord(uint16_t tap_hold_keycode,
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LYR_QWERTY] = LAYOUT_split_3x6_3(
-        KC_ESC,     KC_Q,    KC_W,    KC_E,      KC_R,      KC_T,              KC_Y,      KC_U,      KC_I,       KC_O,      KC_P,       KC_BSPC,
-        KC_TAB,     KC_A,    KC_S,    KC_D,      KC_F,      KC_G,              KC_H,      KC_J,      KC_K,       KC_L,      KC_SCLN,    KC_QUOT,
-        KC_LSFT,    KC_Z,    KC_X,    KC_C,      KC_V,      KC_B,              KC_N,      KC_M,      KC_COMM,    KC_DOT,    KC_SLSH,    KC_RSFT,
-                                      MT_ESC,    LT_NAV,    KC_SPC,            KC_SPC,    LT_SYM,    MT_ENT
+        KC_NO,      KC_Q,    KC_W,    KC_E,      KC_R,      KC_T,           KC_Y,      KC_U,      KC_I,       KC_O,      KC_P,       KC_NO,
+        KC_TAB,     HR_A,    HR_S,    HR_D,      HR_F,      KC_G,           KC_H,      HR_J,      HR_K,       HR_L,      HR_SCLN,    KC_QUOT,
+        KC_NO,      KC_Z,    KC_X,    KC_C,      KC_V,      KC_B,           KC_N,      KC_M,      KC_COMM,    KC_DOT,    KC_SLSH,    KC_NO,
+                                      KC_ESC,    MO_NAV,    KC_BSPC,        KC_SPC,    MO_SYM,    KC_ENT
     ),
 
     [LYR_NAV] = LAYOUT_split_3x6_3(
-        KC_TRNS,    KC_COMM,    KC_7,       KC_8,       KC_9,       KC_DLR,     KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,      KC_NO,      KC_TRNS,
-        KC_NO,      KC_0,       KC_4,       KC_5,       KC_6,       KC_PERC,    KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,    KC_NO,      KC_NO,
-        KC_TRNS,    KC_DOT,     KC_1,       KC_2,       KC_3,       KC_NO,      KC_NO,      KC_NO,      KC_NO,      KC_NO,       KC_NO,      KC_TRNS,
-                                       KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS,    KC_TRNS
+        KC_NO,      KC_COMM,    KC_7,       KC_8,       KC_9,       KC_DLR,         KC_HOME,    KC_PGDN,    KC_PGUP,    KC_END,      KC_NO,      KC_NO,
+        KC_TRNS,    KC_0,       KC_4,       KC_5,       KC_6,       KC_PERC,        KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,    KC_NO,      KC_NO,
+        KC_NO,      KC_DOT,     KC_1,       KC_2,       KC_3,       KC_NO,          KC_NO,      KC_NO,      KC_NO,      KC_NO,       KC_NO,      KC_NO,
+                                            KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
 
     [LYR_SYM] = LAYOUT_split_3x6_3(
-        KC_NO,      KC_NO,      KC_PERC,    KC_LBRC,    KC_RBRC,    KC_GRV,     KC_SLSH,    KC_CIRC,    KC_DLR,     KC_ASTR,    KC_HASH,    KC_TRNS,
-        KC_NO,      KC_QUES,    KC_EXLM,    KC_LPRN,    KC_RPRN,    KC_PIPE,    KC_AT,      KC_MINS,    KC_EQL,     KC_PLUS,    KC_COLN,    KC_NO,
-        KC_NO,      KC_AMPR,    KC_UNDS,    KC_LCBR,    KC_RCBR,    KC_NO,      KC_BSLS,    KC_TILD,    KC_LT,      KC_GT,      KC_DQUO,    KC_TRNS,
-                                          KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS,    KC_TRNS
+        KC_NO,      KC_NO,      KC_PERC,    KC_LBRC,    KC_RBRC,    KC_GRV,         KC_SLSH,    KC_CIRC,    KC_DLR,     KC_ASTR,    KC_HASH,    KC_NO,
+        KC_NO,      KC_QUES,    KC_EXLM,    KC_LPRN,    KC_RPRN,    KC_PIPE,        KC_AT,      KC_MINS,    KC_EQL,     KC_PLUS,    KC_COLN,    KC_NO,
+        KC_NO,      KC_AMPR,    KC_UNDS,    KC_LCBR,    KC_RCBR,    KC_NO,          KC_BSLS,    KC_TILD,    KC_LT,      KC_GT,      KC_DQUO,    KC_NO,
+                                            KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
 
     [LYR_FN] = LAYOUT_split_3x6_3(
-        KC_F1,    KC_F2,      KC_F3,    KC_F4,    KC_F5,    KC_F6,    KC_F7,    KC_F8,    KC_F9,     KC_F10,    KC_F11,    KC_F12,
-        KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_F5,    KC_F6,     KC_F7,     KC_F8,     KC_NO,
-        KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_F1,    KC_F2,     KC_F3,     KC_F4,     KC_NO,
-                                        KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS,    KC_TRNS
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,        KC_NO,    KC_NO,      KC_NO,       KC_NO,      KC_NO,      KC_NO,
+        KC_F1,    KC_F2,    KC_F3,    KC_F4,    KC_F5,      KC_F6,        KC_F7,    KC_F8,      KC_F9,       KC_F10,     KC_F11,     KC_F12,
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,        KC_NO,    KC_NO,      KC_NO,       KC_NO,      KC_NO,      KC_NO,
+                                      KC_TRNS,  KC_TRNS,    KC_TRNS,      KC_TRNS,  KC_TRNS,    KC_TRNS
     ),
 
     [LYR_ADJ] = LAYOUT_split_3x6_3(
-        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,      KC_NO,       KC_NO,      KC_NO,      QK_BOOT,
-        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,    KC_NO,    RGB_TOG,    RGB_MOD,     RGB_HUI,    RGB_SAI,    RGB_VAI,
-        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,    KC_NO,    KC_NO,      RGB_RMOD,    RGB_HUD,    RGB_SAD,    RGB_VAD,
-                                      KC_TRNS,    KC_TRNS,    KC_TRNS,        KC_TRNS,    KC_TRNS,    KC_TRNS
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,           KC_NO,    KC_NO,      KC_NO,       KC_NO,      KC_NO,      QK_BOOT,
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,           KC_NO,    RGB_TOG,    RGB_MOD,     RGB_HUI,    RGB_SAI,    RGB_VAI,
+        KC_NO,    KC_NO,    KC_NO,    KC_NO,    KC_NO,      KC_NO,           KC_NO,    KC_NO,      RGB_RMOD,    RGB_HUD,    RGB_SAD,    RGB_VAD,
+                                      KC_TRNS,  KC_TRNS,    KC_TRNS,        KC_TRNS,   KC_TRNS,    KC_TRNS
     ),
 };
