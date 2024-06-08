@@ -1,3 +1,5 @@
+SRC += features/achordion.c
+
 OLED_ENABLE = yes
 OLED_TIMEOUT = 0
 OLED_DRIVER = ssd1306

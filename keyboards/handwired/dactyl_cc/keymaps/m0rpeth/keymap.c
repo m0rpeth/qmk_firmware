@@ -1,4 +1,5 @@
 #include QMK_KEYBOARD_H
+#include "features/achordion.h"
 
 enum layers {
     LYR_QWERTY = 0,
@@ -26,7 +27,13 @@ void leader_end_user(void) {
     }
 }
 
+layer_state_t layer_state_set_user(layer_state_t state) {
+  return update_tri_layer_state(state, LYR_NAV, LYR_SYM, LYR_ADJ);
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_achordion(keycode, record)) { return false; }
+
     static uint8_t saved_mods   = 0;
 
     switch (keycode) {
@@ -52,13 +59,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-#define TO_NAV LT(LYR_NAV, KC_SPC)
-#define TO_SYM LT(LYR_SYM, KC_ESC)
-#define TO_FN OSL(LYR_FN)
-#define CK_ENT RGUI_T(KC_ENT)
-#define CK_LSFT LSFT_T(KC_F)
-#define CK_RSFT RSFT_T(KC_J)
-#define CK_STAB RSFT(KC_TAB)
+void matrix_scan_user(void) {
+  achordion_task();
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+  // follow the opposite hands rule.
+  return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LYR_QWERTY] = LAYOUT(

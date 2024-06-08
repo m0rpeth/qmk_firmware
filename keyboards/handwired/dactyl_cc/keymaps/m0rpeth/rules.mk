@@ -1,3 +1,5 @@
+SRC += features/achordion.c
+
 AUTO_SHIFT_ENABLE = no
 MOUSEKEY_ENABLE = no
 DYNAMIC_TAPPING_TERM_ENABLE = no
