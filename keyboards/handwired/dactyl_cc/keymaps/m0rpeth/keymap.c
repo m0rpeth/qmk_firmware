@@ -5,6 +5,7 @@ enum layers {
     LYR_QWERTY = 0,
     LYR_NAV,
     LYR_SYM,
+    LYR_ADJ,
     LYR_FN,
 };
 
@@ -71,43 +72,76 @@ bool achordion_chord(uint16_t tap_hold_keycode,
   return achordion_opposite_hands(tap_hold_record, other_record);
 }
 
+#define MO_NAV MO(LYR_NAV)
+#define MO_SYM MO(LYR_SYM)
+
+#define OS_FN OSL(LYR_FN)
+
+#define LT_LSFT LSFT_T(KC_F)
+#define LT_LGUI LGUI_T(KC_D)
+#define LT_LALT LALT_T(KC_S)
+#define LT_LCTL LCTL_T(KC_A)
+
+#define LT_RSFT RSFT_T(KC_J)
+#define LT_RGUI RGUI_T(KC_K)
+#define LT_RALT RALT_T(KC_L)
+#define LT_RCTL RCTL_T(KC_SCLN)
 
 // ********************* WARNING *********************
 //
 // Columns/rows are swapped
-// When flashing right side, swap rows and columns arrays in info.json
+//
+// Left side:
+// "rows": ["D4", "C6", "D7", "E6", "B4", "B5"],
+// "cols": ["F6", "F7", "B1", "B3", "B2", "B6"]
+
+// Right side:
+// "cols": ["D4", "C6", "D7", "E6", "B4", "B5"],
+// "rows": ["F6", "F7", "B1", "B3", "B2", "B6"]
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LYR_QWERTY] = LAYOUT(
-        KC_GRV,     KC_1,    KC_2,      KC_3,       KC_4,       KC_5,                   KC_6,       KC_7,       KC_8,       KC_9,      KC_0,       KC_MINS,
-        KC_ESC,     KC_Q,    KC_W,      KC_E,       KC_R,       KC_T,                   KC_Y,       KC_U,       KC_I,       KC_O,      KC_P,       KC_DEL,
-        KC_TAB,     KC_A,    KC_S,      KC_D,       CK_LSFT,    KC_G,                   KC_H,       CK_RSFT,    KC_K,       KC_L,      KC_SCLN,    KC_QUOT,
-        TO_FN,      KC_Z,    KC_X,      KC_C,       KC_V,       KC_B,                   KC_N,       KC_M,       KC_COMM,    KC_DOT,    KC_SLSH,    TO_FN,
+        KC_NO,      KC_1,    KC_2,      KC_3,       KC_4,       KC_5,                   KC_6,       KC_7,       KC_8,       KC_9,      KC_0,       KC_NO,
+        KC_NO,      KC_Q,    KC_W,      KC_E,       KC_R,       KC_T,                   KC_Y,       KC_U,       KC_I,       KC_O,      KC_P,       KC_NO,
+        KC_TAB,     LT_LCTL, LT_LALT,   LT_LGUI,    LT_LSFT,    KC_G,                   KC_H,       LT_RSFT,    LT_RGUI,    LT_RALT,   LT_RCTL,    KC_QUOT,
+        KC_NO,      KC_Z,    KC_X,      KC_C,       KC_V,       KC_B,                   KC_N,       KC_M,       KC_COMM,    KC_DOT,    KC_SLSH,    KC_NO,
 
-        KC_NO,      KC_LCTL, KC_LSFT,   KC_LALT,    KC_LGUI,    CK_STAB,                KC_NO,      KC_RGUI,    KC_RALT,    KC_RSFT,   KC_RCTL,    KC_NO,
-        KC_NO,      KC_BSPC, TO_NAV,    KC_LSFT,    KC_NO,      KC_TAB,                 KC_NO,      KC_NO,      KC_RSFT,    TO_SYM,    CK_ENT,     KC_NO
+        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      MO_NAV,                 MO_SYM,     KC_NO,      KC_NO,      KC_NO,     KC_NO,      KC_NO,
+        KC_NO,      KC_ESC,  KC_BSPC,   KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_SPC,    KC_ENT,     KC_NO
     ),
     [LYR_SYM] = LAYOUT(
         KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO,
         KC_NO,      KC_NO,   KC_PERC,   KC_LBRC,    KC_RBRC,    KC_GRV,                 KC_CIRC,    KC_SLSH,    KC_DLR,     KC_ASTR,   KC_HASH,    KC_NO,
         KC_NO,      KC_QUES, KC_EXLM,   KC_LPRN,    KC_RPRN,    KC_PIPE,                KC_AT,      KC_MINS,    KC_EQL,     KC_PLUS,   KC_COLN,    KC_NO,
-        KC_NO,      KC_AMPR, KC_UNDS,   KC_LCBR,    KC_RCBR,    KC_NO,                  KC_BSLS,    KC_TILD,    KC_LT,      KC_GT,     KC_DQUO,    KC_NO,
+        KC_NO,      KC_AMPR, KC_UNDS,   KC_LCBR,    KC_RCBR,    KC_NO,                  KC_BSLS,    KC_TILD,    KC_LT,      KC_GT,     KC_DQUO,    KC_TRNS,
+
         KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO,
         KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO
     ),
     [LYR_NAV] = LAYOUT(
         KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO,
-        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_HOME,    KC_PGUP,    KC_PGDN,    KC_END,    KC_NO,      KC_NO,
-        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,  KC_NO,      KC_NO,
+        KC_NO,      KC_COMM, KC_7,      KC_8,       KC_9,       KC_DLR,                 KC_HOME,    KC_PGUP,    KC_PGDN,    KC_END,    KC_NO,      KC_NO,
+        KC_TRNS,    KC_0,    KC_4,      KC_5,       KC_6,       KC_PERC,                KC_LEFT,    KC_DOWN,    KC_UP,      KC_RIGHT,  KC_NO,      KC_NO,
+        KC_NO,      KC_DOT,  KC_1,      KC_2,       KC_3,       KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_NO,     KC_NO,      KC_NO,
+
+        KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO,
+        KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO
+    ),
+    [LYR_ADJ] = LAYOUT(
+        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_NO,     KC_NO,      QK_BOOT,
         KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_NO,     KC_NO,      KC_NO,
+        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_NO,     KC_NO,      KC_NO,
+        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_NO,     KC_NO,      KC_NO,
+
         KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO,
         KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO
     ),
     [LYR_FN] = LAYOUT(
-        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_NO,     KC_NO,      QK_BOOT,
-        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_F9,      KC_F10,     KC_F11,    KC_F12,     KC_NO,
-        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_F5,      KC_F6,      KC_F7,     KC_F8,      KC_NO,
-        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_F1,      KC_F2,      KC_F3,     KC_F4,      KC_NO,
+        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_NO,     KC_NO,      KC_NO,
+        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_NO,     KC_NO,      KC_NO,
+        KC_F1,      KC_F2,   KC_F3,     KC_F4,      KC_F5,      KC_F6,                  KC_F7,      KC_F8,      KC_F9,      KC_F10,    KC_F11,     KC_F12,
+        KC_NO,      KC_NO,   KC_NO,     KC_NO,      KC_NO,      KC_NO,                  KC_NO,      KC_NO,      KC_NO,      KC_NO,     KC_NO,      KC_NO,
+
         KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO,
         KC_NO,      KC_TRNS, KC_TRNS,   KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,   KC_TRNS,    KC_NO
     )
