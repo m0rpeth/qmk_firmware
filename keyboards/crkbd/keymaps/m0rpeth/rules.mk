@@ -10,7 +10,7 @@ COMMAND_ENABLE = no
 SLEEP_LED_ENABLE = no
 AUDIO_ENABLE = no
 BOOTMAGIC_ENABLE = yes
-LEADER_ENABLE = yes
+LEADER_ENABLE = no
 
 # Backlight: Single color, per key, not individually addressable (all leds on or all leds off)
 # RGBLight: Underglow RGB, linear design (single chain), individually addressable
@@ -18,9 +18,8 @@ LEADER_ENABLE = yes
 # RGB Matrix: RGB, per key, individually addressable
 # Indicators: Scroll/Caps/Num Lock LEDs
 
-RGBLIGHT_SUPPORTED = yes
-RGB_MATRIX_SUPPORTED = yes
+RGBLIGHT_SUPPORTED = no
+RGB_MATRIX_SUPPORTED = no
 
-VIA_ENABLE = no
 #COMBO_ENABLE = yes
 
